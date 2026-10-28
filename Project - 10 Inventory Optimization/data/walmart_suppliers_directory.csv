@@ -1,0 +1,21 @@
+id,name,lead_time_mean,lead_time_std,fill_rate,reliability_score,region
+SUP-101,Procter & Gamble Direct Supply,5.2,1.1,0.98,98.2,Domestic
+SUP-102,Unilever Global Consumer Logistics,6.0,1.3,0.97,96.5,Domestic
+SUP-103,Kraft Heinz Foodservice Distribution,4.5,0.9,0.985,98.8,Domestic
+SUP-104,Coca-Cola Consolidated Bottling,3.2,0.7,0.992,99.4,Local DSD
+SUP-105,Tyson Foods Fresh Poultry Group,2.8,0.5,0.988,99.1,Cold Chain
+SUP-106,Apple Logistics Americas (Americas Hub),14.5,3.8,0.92,91.5,Global/Air
+SUP-107,Samsung Electronics North America,16.0,4.2,0.91,89.8,Pacific Import
+SUP-108,Sony Interactive Entertainment Supply,18.2,5.1,0.88,86.4,Pacific Import
+SUP-109,onn. Electronics OEM Contracting (Shenzhen),24.0,6.5,0.84,82.0,Trans-Pacific Ocean
+SUP-110,Anker Innovations Global Supply,12.0,2.8,0.94,93.2,Global
+SUP-111,Colgate-Palmolive Distribution,5.0,1.0,0.98,97.8,Domestic
+SUP-112,LEGO Americas Distribution Center,14.0,3.4,0.93,92.5,Mexico Overland
+SUP-113,Mattel Toy Logistics,21.0,5.8,0.86,84.7,Pacific Ocean
+SUP-114,Mobil 1 Lubricants (ExxonMobil Supply),8.5,1.9,0.96,95.8,Domestic Rail/Tanker
+SUP-115,Great Value Private Label Food Group,4.0,0.8,0.99,99.2,Dedicated DC Network
+SUP-116,George / Time and Tru Textile Mills (Vietnam),27.5,7.2,0.79,76.5,Asia-Pacific Marine
+SUP-117,Kingsford BBQ & Grilling Distribution,7.0,1.6,0.965,96.0,Domestic Bulk
+SUP-118,East Penn Manufacturing (EverStart Batteries),15.5,4.1,0.9,88.5,Domestic Heavy Freight
+SUP-119,Keurig Dr Pepper Commercial Systems,11.5,2.7,0.95,94.0,Domestic Truckload
+SUP-120,Mainstays Overseas Home Goods Consortium,28.0,7.8,0.77,74.2,East Asia Container

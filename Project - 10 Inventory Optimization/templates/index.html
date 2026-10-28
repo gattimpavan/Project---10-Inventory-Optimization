@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walmart Enterprise - AI Inventory Optimization & Replenishment Intelligence</title>
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Top Executive Header -->
+    <header class="top-header">
+        <div class="brand-section">
+            <div class="spark-icon">✱</div>
+            <div class="brand-text">
+                <h1>Walmart Enterprise Inventory Intelligence</h1>
+                <span>
+                    <span class="status-indicator"></span>
+                    Project - 10: Inventory Optimization | Live on Port 5010
+                </span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <a href="/download_report" class="btn-report" download>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Executive PDF Report
+            </a>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <button class="nav-tab active" data-tab="tabOverview">
+            <span>📊</span> Executive Overview & KPIs
+        </button>
+        <button class="nav-tab" data-tab="tabSkus">
+            <span>📦</span> Multi-Echelon SKU Inventory Grid
+        </button>
+        <button class="nav-tab" data-tab="tabProtocols">
+            <span>⚡</span> Autonomous Operations Protocols
+        </button>
+        <button class="nav-tab" data-tab="tabSimulation">
+            <span>🔬</span> What-If Stress Simulator
+        </button>
+        <button class="nav-tab" data-tab="tabSuppliers">
+            <span>🚢</span> Supplier Lead-Time Radar
+        </button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+        <!-- ============================================================= -->
+        <!-- TAB 1: EXECUTIVE OVERVIEW -->
+        <!-- ============================================================= -->
+        <section id="tabOverview" class="tab-pane active">
+            <!-- Problem Statement Banner -->
+            <div class="card" style="background: rgba(0, 113, 206, 0.08); border-color: rgba(0, 113, 206, 0.4); margin-bottom: 1.5rem;">
+                <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                    <div style="font-size: 1.5rem; color: var(--wm-spark); line-height: 1;">💡</div>
+                    <div>
+                        <div style="font-size: 0.75rem; font-weight: 800; color: var(--wm-blue); letter-spacing: 0.05em; text-transform: uppercase;">Executive Problem Statement</div>
+                        <div style="font-size: 0.92rem; color: var(--text-primary); font-weight: 500; margin-top: 0.2rem;">
+                            <i>"A Walmart retailer simultaneously experiences stockouts for high-demand products and excess inventory for slow-moving products. Develop an AI inventory intelligence system that analyzes historical demand, seasonality, sales, inventory and supplier lead times to recommend inventory decisions."</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI Cards Grid -->
+            <div class="kpi-grid">
+                <div class="kpi-card kpi-blue">
+                    <div class="kpi-label">
+                        <span>Monitored Portfolio</span>
+                        <span class="kpi-badge badge-blue">8 Categories</span>
+                    </div>
+                    <div class="kpi-value" id="kpiTotalSkus">49</div>
+                    <div class="kpi-subtext">Multi-Echelon SKUs Across 10 Hubs</div>
+                </div>
+
+                <div class="kpi-card kpi-red">
+                    <div class="kpi-label">
+                        <span>Stockout Threat Rate</span>
+                        <span class="kpi-badge badge-red">Legacy Risk</span>
+                    </div>
+                    <div class="kpi-value" id="kpiStockoutRisk" style="color: var(--accent-red);">59.2%</div>
+                    <div class="kpi-subtext" id="kpiStockoutCount">29 SKUs Vulnerable to Stockouts</div>
+                </div>
+
+                <div class="kpi-card kpi-amber">
+                    <div class="kpi-label">
+                        <span>Trapped Working Capital</span>
+                        <span class="kpi-badge badge-amber">Dead Stock</span>
+                    </div>
+                    <div class="kpi-value" id="kpiTrappedExcess" style="color: var(--accent-amber);">$28,874</div>
+                    <div class="kpi-subtext" id="kpiExcessCount">3 Slow-Moving Excess SKUs</div>
+                </div>
+
+                <div class="kpi-card kpi-green">
+                    <div class="kpi-label">
+                        <span>Stockout Revenue Protected</span>
+                        <span class="kpi-badge badge-green">Protocol Alpha</span>
+                    </div>
+                    <div class="kpi-value" id="kpiProtectedRev" style="color: var(--accent-green);">$3,173,396</div>
+                    <div class="kpi-subtext">Via Automated Expedited Replenishment</div>
+                </div>
+
+                <div class="kpi-card kpi-purple">
+                    <div class="kpi-label">
+                        <span>Forecasting R² Accuracy</span>
+                        <span class="kpi-badge badge-blue">HistGradBoost</span>
+                    </div>
+                    <div class="kpi-value" id="kpiR2Score" style="color: var(--accent-purple);">0.9757</div>
+                    <div class="kpi-subtext">WAPE: 11.2% (+7.8% over Moving Avg)</div>
+                </div>
+
+                <div class="kpi-card kpi-spark">
+                    <div class="kpi-label">
+                        <span>Net Annual Economic ROI</span>
+                        <span class="kpi-badge badge-green">Quantified</span>
+                    </div>
+                    <div class="kpi-value" id="kpiNetRoi" style="color: var(--wm-spark);">$1,146,376</div>
+                    <div class="kpi-subtext">Protected Margin + Carrying Cost Savings</div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">The Retail Inventory Paradox</div>
+                            <div class="card-subtitle">Real-Time Distribution of Monitored SKUs by Health Status</div>
+                        </div>
+                    </div>
+                    <div style="height: 280px; position: relative;">
+                        <canvas id="chartHealthDist"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">9-Quadrant ABC-XYZ Segmentation Matrix</div>
+                            <div class="card-subtitle">Revenue Contribution (Pareto) vs Demand Volatility (CV)</div>
+                        </div>
+                    </div>
+                    <div style="height: 280px; position: relative;">
+                        <canvas id="chartAbcXyzMatrix"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- TAB 2: MULTI-ECHELON SKU INVENTORY GRID -->
+        <!-- ============================================================= -->
+        <section id="tabSkus" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Multi-Echelon SKU Inventory Directory</div>
+                        <div class="card-subtitle">Dynamic ROP, Stochastic Safety Stock, Days of Supply, and Health Classification</div>
+                    </div>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="filter-bar">
+                    <input type="text" id="skuSearchInput" class="search-input" placeholder="Search by SKU name, ID, or category...">
+                    
+                    <select id="skuHealthFilter" class="filter-select">
+                        <option value="ALL">All Inventory Health Tiers</option>
+                        <option value="Critical Stockout Risk">Critical Stockout Risk</option>
+                        <option value="Reorder Triggered">Reorder Triggered</option>
+                        <option value="Optimal Inventory Range">Optimal Inventory Range</option>
+                        <option value="Mild Excess Inventory">Mild Excess Inventory</option>
+                        <option value="Severe Excess / Dead Stock">Severe Excess / Dead Stock</option>
+                    </select>
+
+                    <select id="skuMatrixFilter" class="filter-select">
+                        <option value="ALL">All ABC-XYZ Quadrants</option>
+                        <option value="A">Class A (Top 80% Revenue)</option>
+                        <option value="B">Class B (Next 15% Revenue)</option>
+                        <option value="C">Class C (Bottom 5% Revenue)</option>
+                        <option value="X">Class X (Steady Demand, CV < 0.25)</option>
+                        <option value="Y">Class Y (Seasonal, 0.25 <= CV <= 0.65)</option>
+                        <option value="Z">Class Z (Erratic / Lumpy, CV > 0.65)</option>
+                    </select>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>SKU Name & ID</th>
+                                <th>Category</th>
+                                <th>Matrix</th>
+                                <th>On-Hand</th>
+                                <th>Dynamic ROP</th>
+                                <th>Safety Stock</th>
+                                <th>Days Supply</th>
+                                <th>Unit Price</th>
+                                <th>Inventory Health</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="skusTableBody">
+                            <!-- Populated dynamically via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- TAB 3: AUTONOMOUS OPERATIONS PROTOCOLS -->
+        <!-- ============================================================= -->
+        <section id="tabProtocols" class="tab-pane">
+            <div class="protocol-grid">
+                <!-- Protocol Alpha -->
+                <div class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="proto-badge proto-alpha">PROTOCOL ALPHA</span>
+                        <div>
+                            <div class="protocol-title">Autonomous Expedited PO Dispatch</div>
+                            <span style="font-size: 0.72rem; color: var(--accent-red); font-weight: 700;">CRITICAL * IMMEDIATE</span>
+                        </div>
+                    </div>
+                    <p class="protocol-desc">
+                        Preempts imminent stockouts on high-velocity Class A/B fast movers. Dispatches automated EDI 850 orders for optimal EOQ replenishment, compressing lead times and protecting margin.
+                    </p>
+                    <div class="protocol-metric">
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #FFFFFF;">Trigger Condition: Inventory Position &le; Dynamic ROP</div>
+                        <div style="font-size: 0.72rem; color: var(--accent-green);">Protects $3,173,396 in stockout-threatened sales</div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%;" onclick="alert('Protocol Alpha Dispatched: 29 Autonomous POs queued for EDI transmission to Tier-1 Vendors.')">
+                        Trigger Alpha PO Batch (29 SKUs)
+                    </button>
+                </div>
+
+                <!-- Protocol Beta -->
+                <div class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="proto-badge proto-beta">PROTOCOL BETA</span>
+                        <div>
+                            <div class="protocol-title">Cross-Facility Dynamic Rebalancing Transfer</div>
+                            <span style="font-size: 0.72rem; color: var(--accent-green); font-weight: 700;">HIGH PRIORITY</span>
+                        </div>
+                    </div>
+                    <p class="protocol-desc">
+                        Identifies regional imbalances where Supercenters experience stockout threats while upstream Regional DCs (DC-6021, DC-9012) hold excess buffer. Dispatches Walmart Dedicated Fleet cross-docks.
+                    </p>
+                    <div class="protocol-metric">
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #FFFFFF;">Trigger Condition: Regional DC Buffer &gt; 120% Target</div>
+                        <div style="font-size: 0.72rem; color: var(--accent-green);">Resolves 38% of stockout threats without external POs</div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background: linear-gradient(135deg, var(--accent-green), #047857);" onclick="alert('Protocol Beta Triggered: 14 Lateral Cross-Dock Fleet Transfers scheduled.')">
+                        Schedule Lateral Transfers (14 Routes)
+                    </button>
+                </div>
+
+                <!-- Protocol Gamma -->
+                <div class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="proto-badge proto-gamma">PROTOCOL GAMMA</span>
+                        <div>
+                            <div class="protocol-title">Dynamic Markdown & Clearance Liquidation</div>
+                            <span style="font-size: 0.72rem; color: var(--accent-amber); font-weight: 700;">STRATEGIC LIQUIDATION</span>
+                        </div>
+                    </div>
+                    <p class="protocol-desc">
+                        Applies price elasticity models to slow-moving Class C/Z items with Days of Supply &gt; 55 days. Automatically calculates 2-stage discount ladders (-15%, -30%) on Walmart.com to eliminate carrying costs.
+                    </p>
+                    <div class="protocol-metric">
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #FFFFFF;">Trigger Condition: Days of Supply &gt; 55 Days + Stagnant Velocity</div>
+                        <div style="font-size: 0.72rem; color: var(--accent-green);">Frees $28,874 in trapped cash; saves $8,085/yr holding cost</div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background: linear-gradient(135deg, var(--accent-amber), #b45309);" onclick="alert('Protocol Gamma Dispatched: Dynamic digital shelf-tag markdowns deployed to Walmart.com and 10 Pilot Stores.')">
+                        Apply Liquidation Markdowns (3 SKUs)
+                    </button>
+                </div>
+
+                <!-- Protocol Delta -->
+                <div class="protocol-card">
+                    <div class="protocol-header">
+                        <span class="proto-badge proto-delta">PROTOCOL DELTA</span>
+                        <div>
+                            <div class="protocol-title">Dynamic Buffer & Vendor SLA Restructuring</div>
+                            <span style="font-size: 0.72rem; color: var(--accent-purple); font-weight: 700;">VENDOR GOVERNANCE</span>
+                        </div>
+                    </div>
+                    <p class="protocol-desc">
+                        Monitors supplier fill rate degradation and shipping standard deviation. Automatically applies dynamic buffer days to safety stock and triggers vendor scorecard compliance penalties.
+                    </p>
+                    <div class="protocol-metric">
+                        <div style="font-size: 0.8rem; font-weight: 700; color: #FFFFFF;">Trigger Condition: Supplier Fill Rate &lt; 92% or &sigma;LT &gt; 3.0 Days</div>
+                        <div style="font-size: 0.72rem; color: var(--accent-green);">Eliminates 42% of erratic supplier-induced delays</div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; background: linear-gradient(135deg, var(--accent-purple), #6d28d9);" onclick="alert('Protocol Delta Triggered: Dynamic lead-time buffers expanded. 4 Vendor SLA penalty notices prepared.')">
+                        Apply Vendor Buffers & Scorecards
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- TAB 4: WHAT-IF SCENARIO STRESS SIMULATOR -->
+        <!-- ============================================================= -->
+        <section id="tabSimulation" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">What-If Counterfactual Stress Simulator</div>
+                        <div class="card-subtitle">Real-time macroeconomic stress testing: Demand surges, Port delays, and Dynamic markdowns</div>
+                    </div>
+                </div>
+
+                <!-- Sliders Grid -->
+                <div class="sim-controls-grid">
+                    <div class="sim-control-box">
+                        <div class="sim-label">
+                            <span>Demand Surge Multiplier</span>
+                            <span id="valDemandMultiplier" style="color: var(--wm-blue); font-weight: 700;">1.25x (+25%)</span>
+                        </div>
+                        <input type="range" id="simDemandMultiplier" class="sim-slider" min="0.80" max="2.00" step="0.05" value="1.25">
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Simulates Black Friday, holiday shopping, or weather spikes</span>
+                    </div>
+
+                    <div class="sim-control-box">
+                        <div class="sim-label">
+                            <span>Supplier Lead-Time Delay</span>
+                            <span id="valLeadTimeDelay" style="color: var(--accent-red); font-weight: 700;">+5 Days</span>
+                        </div>
+                        <input type="range" id="simLeadTimeDelay" class="sim-slider" min="0" max="15" step="1" value="5">
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Simulates trans-pacific port congestion or rail bottlenecks</span>
+                    </div>
+
+                    <div class="sim-control-box">
+                        <div class="sim-label">
+                            <span>Target Cycle Service Level</span>
+                            <span id="valServiceLevel" style="color: var(--accent-green); font-weight: 700;">95.0%</span>
+                        </div>
+                        <input type="range" id="simServiceLevel" class="sim-slider" min="0.90" max="0.99" step="0.01" value="0.95">
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Normal distribution quantile Z-score safety buffer</span>
+                    </div>
+
+                    <div class="sim-control-box">
+                        <div class="sim-label">
+                            <span>Clearance Markdown Discount</span>
+                            <span id="valMarkdownDiscount" style="color: var(--accent-amber); font-weight: 700;">20% Off</span>
+                        </div>
+                        <input type="range" id="simMarkdownDiscount" class="sim-slider" min="0.05" max="0.50" step="0.05" value="0.20">
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Elasticity-driven price liquidation on slow-moving inventory</span>
+                    </div>
+                </div>
+
+                <!-- Simulation Results Comparison -->
+                <div class="charts-row" style="margin-bottom: 0;">
+                    <div class="card" style="background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.3);">
+                        <div class="card-title" style="color: var(--accent-red);">Legacy Static Min/Max Policy Under Stress</div>
+                        <div style="margin-top: 1rem;">
+                            <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Simulated Stockout Rate:</div>
+                            <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-red);" id="simLegacyStockoutRate">68.5%</div>
+                            <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.8rem; margin-bottom: 0.4rem;">Estimated Lost Revenue Exposure:</div>
+                            <div style="font-size: 1.4rem; font-weight: 800; color: #FCA5A5;" id="simLegacyLostSales">$8,820,400</div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.3);">
+                        <div class="card-title" style="color: var(--accent-green);">Walmart AI Inventory Intelligence Platform</div>
+                        <div style="margin-top: 1rem;">
+                            <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem;">AI Stockout Rate (Lead-Time Buffered):</div>
+                            <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-green);" id="simAiStockoutRate">18.4%</div>
+                            <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.8rem; margin-bottom: 0.4rem;">Preserved Revenue & Net Economic Value:</div>
+                            <div style="font-size: 1.4rem; font-weight: 800; color: var(--wm-spark);" id="simRevenueProtected">+$6,180,000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quantified Value Grid -->
+                <div class="kpi-grid" style="margin-top: 1.25rem;">
+                    <div class="kpi-card kpi-blue">
+                        <div class="kpi-label">Freed Trapped Capital</div>
+                        <div class="kpi-value" id="simFreedCapital" style="font-size: 1.35rem; color: var(--wm-blue);">$28,874</div>
+                        <div class="kpi-subtext">Recovered via Dynamic Markdown</div>
+                    </div>
+                    <div class="kpi-card kpi-amber">
+                        <div class="kpi-label">Annual Holding Savings</div>
+                        <div class="kpi-value" id="simHoldingSavings" style="font-size: 1.35rem; color: var(--accent-amber);">$8,085</div>
+                        <div class="kpi-subtext">Eliminated Carrying Cost Burn</div>
+                    </div>
+                    <div class="kpi-card kpi-green">
+                        <div class="kpi-label">Net Economic Value Added</div>
+                        <div class="kpi-value" id="simNetRoi" style="font-size: 1.35rem; color: var(--accent-green);">$594,625</div>
+                        <div class="kpi-subtext">Margin Protected + Carrying Saved</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- TAB 5: SUPPLIERS DIRECTORY -->
+        <!-- ============================================================= -->
+        <section id="tabSuppliers" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Supplier Performance & Lead-Time Reliability Radar</div>
+                        <div class="card-subtitle">20 Global and Domestic Suppliers: Mean Lead Times, Standard Deviations, and Fill Rates</div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Supplier ID</th>
+                                <th>Vendor Name</th>
+                                <th>Logistics Region</th>
+                                <th>Mean Lead Time</th>
+                                <th>Lead Time Variance</th>
+                                <th>Fill Rate</th>
+                                <th>Reliability Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="suppliersTableBody">
+                            <!-- Populated dynamically via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SKU Deep-Dive Modal -->
+    <div id="skuModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="modalSkuTitle">
+                    <div style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">SKU Deep-Dive Diagnostics</div>
+                </div>
+                <button class="modal-close" onclick="closeSkuModal()">&times;</button>
+            </div>
+
+            <!-- Parameters Grid -->
+            <div id="modalStatsGrid" class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: 1.25rem;">
+                <!-- Dynamically filled -->
+            </div>
+
+            <!-- 30-Day Multi-Horizon Forecast Chart -->
+            <div class="card" style="margin-bottom: 1.25rem; background: rgba(15, 23, 42, 0.9);">
+                <div class="card-header" style="margin-bottom: 0.5rem;">
+                    <div>
+                        <div class="card-title" style="font-size: 0.9rem;">30-Day Forward Predictive Demand Trajectory</div>
+                        <div class="card-subtitle">HistGradientBoostingRegressor Forecast with Promotional Lift Overlays</div>
+                    </div>
+                </div>
+                <div style="height: 220px; position: relative;">
+                    <canvas id="chartModalForecast"></canvas>
+                </div>
+            </div>
+
+            <!-- Prescriptive Actions Container -->
+            <div>
+                <div style="font-size: 0.9rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.75rem;">
+                    Autonomous Prescriptive Directives for this SKU:
+                </div>
+                <div id="modalActionsContainer">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Executive Footer -->
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <strong style="color: #FFFFFF;">Walmart Inc. * Global Merchandising & Supply Chain Autonomous Operations</strong><br/>
+                Project - 10: Inventory Optimization | Live Server: http://localhost:5010
+            </div>
+            <div>
+                <a href="/download_report" style="color: var(--wm-spark); text-decoration: none; font-weight: 600;">Download Executive PDF Deliverable &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
+
